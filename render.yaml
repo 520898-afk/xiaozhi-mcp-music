@@ -1,0 +1,6 @@
+services:
+  - type: worker
+    name: stackchan-music-cloud
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bridge.py
