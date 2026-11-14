@@ -1,6 +1,17 @@
 services:
-  - type: worker
+  - type: web
     name: stackchan-music-cloud
     runtime: python
+    plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: python bridge.py
+    startCommand: python start_render.py
+    healthCheckPath: /healthz
+    envVars:
+      - key: MCP_ENDPOINT
+        sync: false
+      - key: MUSIC_SOURCES
+        value: "kuwo,netease"
+      - key: LOCAL_PLAYER
+        value: "none"
+      - key: AUTO_PLAY_LOCAL
+        value: "false"
